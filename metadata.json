@@ -1,0 +1,6 @@
+{
+  "name": "After Effects 快捷键与表达式助手",
+  "description": "一个精美的 Adobe After Effects 学习工具，包含分类快捷键、20个常用表达式的动态可视化演示，以及内置常用表达式函数的详细教程与使用方法。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
