@@ -4,14 +4,14 @@
  */
 
 import React, { useState, useMemo } from 'react';
-import { functionsData } from '../data/functions';
-import { ExpressionFunction, FunctionCategory } from '../types';
-import { Search, Copy, Check, Filter, Lightbulb, BookOpen, Layers } from 'lucide-react';
+import { functionsData, functionCategories } from '../data/functions';
+import { Search, Copy, Check, Lightbulb, BookOpen, Layers, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { FunctionVisual } from './FunctionVisual';
 
 export const FunctionReference: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<FunctionCategory | 'all'>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   // Filter functions
@@ -65,7 +65,7 @@ export const FunctionReference: React.FC = () => {
           >
             全部函数 ({functionsData.length})
           </button>
-          {Object.values(FunctionCategory).map((cat) => {
+          {functionCategories.map((cat) => {
             const count = functionsData.filter((f) => f.category === cat).length;
             return (
               <button
@@ -124,6 +124,8 @@ export const FunctionReference: React.FC = () => {
                     {fn.description}
                   </p>
 
+                  <FunctionVisual fn={fn} />
+
                   {/* Custom tip box */}
                   <div className="p-3 bg-zinc-950/40 rounded-lg border border-zinc-900/80 mb-4 flex gap-2">
                     <Lightbulb className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
@@ -157,6 +159,14 @@ export const FunctionReference: React.FC = () => {
                     {fn.example}
                   </pre>
                 </div>
+                <a
+                  href={fn.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-1 text-[11px] text-cyan-400/80 hover:text-cyan-300"
+                >
+                  Adobe 官方表达式语言参考 <ExternalLink className="w-3 h-3" />
+                </a>
               </motion.div>
             ))
           ) : (

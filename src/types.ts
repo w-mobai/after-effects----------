@@ -49,22 +49,15 @@ export interface ExpressionItem {
   simulationType: string;
 }
 
-export enum FunctionCategory {
-  Global = '全局属性与方法',
-  Math = '向量与数学函数',
-  Random = '随机函数',
-  Interpolation = '数值插值',
-  SpaceTransform = '图层空间转换',
-  CompAccess = '合成与图层检索'
-}
-
 export interface ExpressionFunction {
   id: string;
   name: string;
   signature: string;
-  category: FunctionCategory;
+  category: string;
   description: string;
   returnValue: string;
   example: string;
   tips: string;
+  sourceUrl: string;
+  visualType: 'time' | 'vector' | 'random' | 'curve' | 'color' | 'space' | 'camera' | 'property' | 'data';
 }
